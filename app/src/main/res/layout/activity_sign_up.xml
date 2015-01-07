@@ -15,7 +15,13 @@
         android:ems="10"
         android:id="@+id/signup_emailField"
         android:layout_alignParentTop="true"
-        android:hint="Email" />
+        android:hint="Email">
+
+        <requestFocus/>
+
+    </EditText>
+
+
 
     <EditText
         android:layout_width="match_parent"
