@@ -5,13 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
+        android:name=".GroupBowlApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".GroupBowlApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -30,8 +29,43 @@
         <activity
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AddMemberActivity"
+            android:label="@string/title_activity_add_member"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DetailMemberActivity"
+            android:label="@string/title_activity_detail_member"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DetailEventActivity"
+            android:label="@string/title_activity_detail_event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DetailAnnouncementActivity"
+            android:label="@string/title_activity_detail_announcement" >
+        </activity>
+        <activity
+            android:name=".SelectGroupActivity"
+            android:label="@string/title_activity_select_group"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
         </activity>
     </application>
 

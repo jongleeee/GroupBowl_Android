@@ -2,6 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity" >
 
+    <item android:id="@+id/action_selectGroup"
+        android:title="Select Group"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+
+    <item android:id="@+id/action_addUser"
+        android:title="Add User"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
 
     <item android:id="@+id/action_logout"
         android:title="Log out"

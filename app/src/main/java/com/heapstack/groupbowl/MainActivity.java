@@ -1,5 +1,6 @@
 package com.heapstack.groupbowl;
 
+import java.util.Arrays;
 import java.util.Locale;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -36,6 +37,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * {@link android.support.v13.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    public static String currentGroupName;
+
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -47,16 +50,26 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         if (currentUser == null) {
 
             navigateToLogin();
+
+        }
+        // if user
+        else {
+            // get the GroupList
+
+
+
+            // if num(GroupList) > 0
+
+                // start activity
+
+            // none
+
 
         }
 
@@ -122,7 +135,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             ParseUser.logOut();
             navigateToLogin();
             return true;
+        } else if (id == R.id.action_addUser) {
+            Intent intent = new Intent(this, AddMemberActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_selectGroup) {
+            Intent intent = new Intent(this, SelectGroupActivity.class);
+            startActivity(intent);
         }
+
+
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -141,4 +163,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+
+    public void setCurrentGroupName(String name) {
+        this.currentGroupName = name;
+    }
+
+
+    public String getCurrentGroupName(String name) {
+        return this.currentGroupName;
+    }
 }

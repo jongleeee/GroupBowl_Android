@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.heapstack.groupbowl.DetailMemberActivity" >
+    <item android:id="@+id/action_edit_member"
+        android:title="Edit"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
