@@ -5,13 +5,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.lang.reflect.Array;
+
 
 public class SelectGroupActivity extends Activity {
+
+    public static Array userGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_group);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        userGroup = CurrentMember.getUserGroup();
+
+        String[] groupList
+
     }
 
 

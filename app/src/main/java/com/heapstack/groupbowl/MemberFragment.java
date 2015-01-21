@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public class MemberFragment extends ListFragment {
 
-    protected List<ParseUser> mUsers;
+    protected List<ParseObject> mUsers;
     private ProgressBar spinner;
 
 
@@ -52,37 +53,49 @@ public class MemberFragment extends ListFragment {
     public void onResume() {
         super.onResume();
 
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.orderByAscending(ParseConstants.KEY_NAME);
-        query.setLimit(1000);
+        if (CurrentMember.getUserGroup() == null) {
 
-        spinner.setVisibility(View.VISIBLE);
+        } else {
+            String currentMember = CurrentGroup.getCurrentGroupName() + ParseConstants.MEMBER;
 
-        query.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> users, ParseException e) {
+            // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
 
-                spinner.setVisibility(View.GONE);
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentMember);
+            query.orderByAscending(ParseConstants.KEY_NAME);
+            query.setLimit(1000);
 
-                if (e == null) {
-                    // success
-                    mUsers = users;
-                    String[] usernames = new String[mUsers.size()];
-                    int i = 0;
-                    for (ParseUser user : mUsers) {
-                        usernames[i] = (String) user.get("name");
-                        i++;
+            spinner.setVisibility(View.VISIBLE);
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> users, ParseException e) {
+
+                    spinner.setVisibility(View.GONE);
+
+                    if (e == null) {
+                        // success
+                        mUsers = users;
+                        String[] usernames = new String[mUsers.size()];
+                        int i = 0;
+                        for (ParseObject user : mUsers) {
+                            usernames[i] = (String) user.get("name");
+                            i++;
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                android.R.layout.simple_list_item_1, usernames);
+                        setListAdapter(adapter);
+
+                    } else {
+
+
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, usernames);
-                    setListAdapter(adapter);
-
-                } else {
-
-
                 }
-            }
-        });
+            });
+
+
+        }
+
+
 
     }
 

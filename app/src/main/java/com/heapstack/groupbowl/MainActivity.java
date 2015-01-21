@@ -1,5 +1,6 @@
 package com.heapstack.groupbowl;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Locale;
 import com.parse.Parse;
@@ -61,8 +62,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // if user
         else {
             // get the GroupList
+            CurrentMember.setUserEmail(currentUser.getEmail());
+            CurrentMember.setUserPhone((String) currentUser.get("phone"));
+            CurrentMember.setUserName((String) currentUser.get("name"));
+            Array memberGroup = (Array) currentUser.get("groups");
+            CurrentMember.setUserGroup(memberGroup);
 
 
+            if (Array.getLength(memberGroup) > 0) {
+
+                navigateToGroupList();
+
+            } else {
+
+            }
 
             // if num(GroupList) > 0
 
@@ -112,6 +125,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private void navigateToLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void navigateToGroupList() {
+        Intent intent = new Intent(this, SelectGroupActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

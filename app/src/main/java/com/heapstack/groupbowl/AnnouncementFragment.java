@@ -51,44 +51,54 @@ public class AnnouncementFragment extends ListFragment {
     public void onResume() {
         super.onResume();
 
-        // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
+        if (CurrentMember.getUserGroup() == null) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Karisma_Announcement");
-        query.orderByAscending(ParseConstants.KEY_UPDATED);
-        query.setLimit(1000);
+        } else {
+            String currentAnnouncement = CurrentGroup.getCurrentGroupName() + ParseConstants.ANNOUNCEMENT;
 
-        spinner.setVisibility(View.VISIBLE);
+            // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
 
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> announcements, ParseException e) {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentAnnouncement);
+            query.orderByAscending(ParseConstants.KEY_UPDATED);
+            query.setLimit(1000);
 
-                spinner.setVisibility(View.GONE);
+            spinner.setVisibility(View.VISIBLE);
 
-                if (e == null) {
-                    // success
-                    mAnnouncements = announcements;
-                    String[] announcementTitle = new String[mAnnouncements.size()];
-                    String[] announcementNews = new String[mAnnouncements.size()];
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> announcements, ParseException e) {
 
-                    int i = 0;
-                    for (ParseObject announcement : mAnnouncements) {
-                        announcementTitle[i] = (String) announcement.get("title");
-                        announcementNews[i] = (String) announcement.get("news");
-                        i++;
+                    spinner.setVisibility(View.GONE);
+
+                    if (e == null) {
+                        // success
+                        mAnnouncements = announcements;
+                        String[] announcementTitle = new String[mAnnouncements.size()];
+                        String[] announcementNews = new String[mAnnouncements.size()];
+
+                        int i = 0;
+                        for (ParseObject announcement : mAnnouncements) {
+                            announcementTitle[i] = (String) announcement.get("title");
+                            announcementNews[i] = (String) announcement.get("news");
+                            i++;
+                        }
+
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                android.R.layout.simple_list_item_1, announcementTitle);
+                        setListAdapter(adapter);
+
+                    } else {
+
+
                     }
-
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, announcementTitle);
-                    setListAdapter(adapter);
-
-                } else {
-
-
                 }
-            }
-        });
+            });
+
+        }
+
+
+
 
     }
 

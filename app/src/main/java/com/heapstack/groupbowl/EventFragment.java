@@ -49,37 +49,50 @@ public class EventFragment extends ListFragment {
     public void onResume() {
         super.onResume();
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Karisma_Event");
-        query.orderByAscending(ParseConstants.KEY_NAME);
-        query.setLimit(1000);
+        if (CurrentMember.getUserGroup() == null) {
 
-        spinner.setVisibility(View.VISIBLE);
+        } else {
+            String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
 
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> events, ParseException e) {
+            // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
 
-                spinner.setVisibility(View.GONE);
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
+            query.orderByAscending(ParseConstants.KEY_NAME);
+            query.setLimit(1000);
 
-                if (e == null) {
-                    // success
-                    mEvents = events;
-                    String[] eventTitle = new String[mEvents.size()];
-                    int i = 0;
-                    for (ParseObject event : mEvents) {
-                        eventTitle[i] = (String) event.get("title");
-                        i++;
+            spinner.setVisibility(View.VISIBLE);
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> events, ParseException e) {
+
+                    spinner.setVisibility(View.GONE);
+
+                    if (e == null) {
+                        // success
+                        mEvents = events;
+                        String[] eventTitle = new String[mEvents.size()];
+                        int i = 0;
+                        for (ParseObject event : mEvents) {
+                            eventTitle[i] = (String) event.get("title");
+                            i++;
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                android.R.layout.simple_list_item_1, eventTitle);
+                        setListAdapter(adapter);
+
+                    } else {
+
+
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, eventTitle);
-                    setListAdapter(adapter);
-
-                } else {
-
-
                 }
-            }
-        });
+            });
+
+
+        }
+
+
+
 
     }
 
