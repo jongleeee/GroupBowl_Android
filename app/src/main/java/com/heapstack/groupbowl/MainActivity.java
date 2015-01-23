@@ -1,6 +1,7 @@
 package com.heapstack.groupbowl;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import com.parse.Parse;
@@ -65,17 +66,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             CurrentMember.setUserEmail(currentUser.getEmail());
             CurrentMember.setUserPhone((String) currentUser.get("phone"));
             CurrentMember.setUserName((String) currentUser.get("name"));
-            Array memberGroup = (Array) currentUser.get("groups");
+            ArrayList memberGroup = (ArrayList) currentUser.get("groups");
             CurrentMember.setUserGroup(memberGroup);
 
-
-            if (Array.getLength(memberGroup) > 0) {
-
+            if (CurrentGroup.getCurrentGroupName() == null) {
                 navigateToGroupList();
 
             } else {
 
             }
+
+
 
             // if num(GroupList) > 0
 
@@ -141,7 +142,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        if (CurrentGroup.getCurrentTitle() == "Leader") {
+            getMenuInflater().inflate(R.menu.main, menu);
+
+        } else {
+            getMenuInflater().inflate(R.menu.mainleader, menu);
+        }
+
         return true;
     }
 

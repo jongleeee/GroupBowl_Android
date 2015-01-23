@@ -6,6 +6,7 @@ package com.heapstack.groupbowl;
 public class CurrentGroup {
 
     public static String currentGroupName;
+    public static String currentTitle;
 
     public static void setCurrentGroupName(String name) {
         currentGroupName = name;
@@ -13,6 +14,14 @@ public class CurrentGroup {
 
     public static String getCurrentGroupName() {
         return currentGroupName;
+    }
+
+    public static void setCurrentTitle(String title) {
+        currentTitle = title;
+    }
+
+    public static String getCurrentTitle() {
+        return currentTitle;
     }
 
 }

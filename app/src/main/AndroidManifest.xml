@@ -67,6 +67,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.heapstack.groupbowl.MainActivity" />
         </activity>
+        <activity
+            android:name=".CreateAnnouncementActivity"
+            android:label="@string/title_activity_create_announcement"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CreateEventActivity"
+            android:label="@string/title_activity_create_event"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CreateEventPaymentActivity"
+            android:label="@string/title_activity_create_event_payment" >
+        </activity>
     </application>
 
 </manifest>

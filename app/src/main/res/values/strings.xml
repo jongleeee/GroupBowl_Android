@@ -15,5 +15,8 @@
     <string name="title_activity_detail_announcement">DetailAnnouncementActivity</string>
     <string name="title_activity_group_list">GroupListActivity</string>
     <string name="title_activity_select_group">SelectGroupActivity</string>
+    <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
+    <string name="title_activity_create_event">CreateEventActivity</string>
+    <string name="title_activity_create_event_payment">CreateEventPaymentActivity</string>
 
 </resources>

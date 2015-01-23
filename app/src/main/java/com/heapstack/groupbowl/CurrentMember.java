@@ -1,6 +1,7 @@
 package com.heapstack.groupbowl;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by Jong on 1/20/15.
@@ -10,7 +11,7 @@ public class CurrentMember {
     public static String userEmail;
     public static String userPhone;
     public static String userName;
-    public static Array userGroup;
+    public static ArrayList userGroup;
 
 
     public static void setUserEmail(String email) {
@@ -37,11 +38,11 @@ public class CurrentMember {
         return userPhone;
     }
 
-    public static void setUserGroup(Array group) {
+    public static void setUserGroup(ArrayList group) {
         userGroup = group;
     }
 
-    public static Array getUserGroup() {
+    public static ArrayList getUserGroup() {
         return userGroup;
     }
 
