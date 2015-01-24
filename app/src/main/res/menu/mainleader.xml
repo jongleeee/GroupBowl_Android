@@ -24,5 +24,10 @@
         android:orderInCategory="100"
         android:showAsAction="never" />
 
+    <item android:id="@+id/action_addEvent"
+        android:title="Add Event"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
 
 </menu>

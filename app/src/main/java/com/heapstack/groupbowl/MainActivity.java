@@ -168,6 +168,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         } else if (id == R.id.action_selectGroup) {
             Intent intent = new Intent(this, SelectGroupActivity.class);
             startActivity(intent);
+        } else if (id == R.id.action_addEvent) {
+            Intent intent = new Intent(this, CreateEventPaymentActivity.class);
+            startActivity(intent);
         }
 
 

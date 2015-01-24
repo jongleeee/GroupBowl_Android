@@ -18,5 +18,6 @@
     <string name="title_activity_create_announcement">CreateAnnouncementActivity</string>
     <string name="title_activity_create_event">CreateEventActivity</string>
     <string name="title_activity_create_event_payment">CreateEventPaymentActivity</string>
+    <string name="title_activity_create_event_option">CreateEventOption</string>
 
 </resources>
