@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/addMember_email"
+        android:id="@+id/memberEmailField"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
         android:text="Add Member"
         android:id="@+id/addMemberButton"
-        android:layout_below="@+id/addMember_email"
+        android:layout_below="@+id/memberEmailField"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+
 
 
 </RelativeLayout>
