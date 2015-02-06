@@ -19,5 +19,8 @@
     <string name="title_activity_create_event">CreateEventActivity</string>
     <string name="title_activity_create_event_payment">CreateEventPaymentActivity</string>
     <string name="title_activity_create_event_option">CreateEventOption</string>
+    <string name="title_activity_setting_change_name">SettingChangeNameActivity</string>
+    <string name="title_activity_setting_change_phone_main">SettingChangePhoneMainActivity</string>
+    <string name="title_activity_setting_change_phone">SettingChangePhoneActivity</string>
 
 </resources>

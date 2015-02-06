@@ -33,6 +33,8 @@ public class MemberFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        System.out.println("HERE IS THE MEMBER FRAGMENT");
+
         View rootView = inflater.inflate(R.layout.fragment_member, container, false);
         spinner = (ProgressBar)rootView.findViewById(R.id.progressBarMember);
 

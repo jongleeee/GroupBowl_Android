@@ -63,6 +63,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // if user
         else {
             // get the GroupList
+
             CurrentMember.setUserEmail(currentUser.getEmail());
             CurrentMember.setUserPhone((String) currentUser.get("phone"));
             CurrentMember.setUserName((String) currentUser.get("name"));
@@ -169,7 +170,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             Intent intent = new Intent(this, SelectGroupActivity.class);
             startActivity(intent);
         } else if (id == R.id.action_addEvent) {
-            Intent intent = new Intent(this, CreateEventPaymentActivity.class);
+            Intent intent = new Intent(this, CreateEventOptionActivity.class);
             startActivity(intent);
         }
 

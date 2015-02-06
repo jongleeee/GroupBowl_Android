@@ -1,5 +1,9 @@
 package com.heapstack.groupbowl;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -12,6 +16,7 @@ public class CurrentMember {
     public static String userPhone;
     public static String userName;
     public static ArrayList userGroup;
+    public static ParseObject user;
 
 
     public static void setUserEmail(String email) {
@@ -46,6 +51,13 @@ public class CurrentMember {
         return userGroup;
     }
 
+    public static void setUser(ParseObject user) {
+        user = user;
+    }
+
+    public static ParseObject getUser() {
+        return user;
+    }
 
 
 

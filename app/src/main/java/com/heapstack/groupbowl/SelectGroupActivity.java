@@ -69,22 +69,32 @@ public class SelectGroupActivity extends ListActivity {
 
                 spinner.setVisibility(View.GONE);
 
+
+
+
+
                 if (e == null) {
-                    userGroup = (ArrayList) parseUser.get("groups");
 
-                    String[] userGroups = new String[userGroup.size()];
 
-                    int i = 0;
-                    for (Object group : userGroup) {
 
-                        userGroups[i] = (String) group;
-                        i++;
+                    if (parseUser.get("groups")!= null) {
+
+                        userGroup = (ArrayList) parseUser.get("groups");
+
+                        String[] userGroups = new String[userGroup.size()];
+
+                        int i = 0;
+                        for (Object group : userGroup) {
+
+                            userGroups[i] = (String) group;
+                            i++;
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SelectGroupActivity.this,
+                                android.R.layout.simple_list_item_1, userGroups);
+                        setListAdapter(adapter);
+
                     }
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SelectGroupActivity.this,
-                            android.R.layout.simple_list_item_1, userGroups);
-                    setListAdapter(adapter);
-
 
 
                 } else {
@@ -129,6 +139,11 @@ public class SelectGroupActivity extends ListActivity {
                     CurrentGroup.setCurrentTitle((String) user.get("title"));
                     System.out.println(CurrentGroup.getCurrentTitle());
 
+                    CurrentMember.setUser(user);
+                    CurrentMember.setUserPhone((String) user.get("phone"));
+                    CurrentMember.setUserEmail((String) user.get("email"));
+                    CurrentMember.setUserName((String) user.get("name"));
+
                     Intent intent = new Intent(SelectGroupActivity.this, MainActivity.class);
 
                     startActivity(intent);
@@ -149,6 +164,13 @@ public class SelectGroupActivity extends ListActivity {
         return true;
     }
 
+    private void navigateToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -157,7 +179,9 @@ public class SelectGroupActivity extends ListActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            ParseUser.logOut();
+            navigateToLogin();
             return true;
         }
 

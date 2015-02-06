@@ -99,6 +99,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.heapstack.groupbowl.CreateEventOptionActivity" />
         </activity>
+        <activity
+            android:name=".SettingChangeNameActivity"
+            android:label="@string/title_activity_setting_change_name"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SettingChangePhoneActivity"
+            android:label="@string/title_activity_setting_change_phone"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

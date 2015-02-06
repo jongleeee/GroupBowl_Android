@@ -19,7 +19,6 @@
         android:layout_height="match_parent"
         android:text="No Member"/>
 
-
     <ProgressBar
         android:id="@+id/progressBarMember"
         style="?android:attr/progressBarStyleLarge"
