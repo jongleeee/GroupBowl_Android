@@ -1,6 +1,7 @@
 package com.heapstack.groupbowl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,7 +71,24 @@ public class DetailMemberActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_edit_member) {
+
+            if (CurrentGroup.getCurrentTitle() == "Leader") {
+
+                Intent intent = new Intent(this, EditMemeberActivity.class);
+                startActivity(intent);
+
+            } else {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailMemberActivity.this);
+                builder.setMessage("Must be a leader.")
+                        .setTitle("Oops!")
+                        .setPositiveButton(android.R.string.ok, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);

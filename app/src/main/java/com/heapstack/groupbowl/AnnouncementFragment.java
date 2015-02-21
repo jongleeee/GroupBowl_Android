@@ -114,6 +114,7 @@ public class AnnouncementFragment extends ListFragment {
         Intent intent = new Intent(getActivity(), DetailAnnouncementActivity.class);
         intent.putExtra("title", (String) mAnnouncements.get(position).get("title"));
         intent.putExtra("context", (String) mAnnouncements.get(position).get("news"));
+        intent.putExtra("objectId", (String) mAnnouncements.get(position).get("objectId"));
 
 
         startActivity(intent);

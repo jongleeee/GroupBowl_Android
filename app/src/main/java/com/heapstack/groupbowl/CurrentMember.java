@@ -51,8 +51,8 @@ public class CurrentMember {
         return userGroup;
     }
 
-    public static void setUser(ParseObject user) {
-        user = user;
+    public static void setUser(ParseObject inputUser) {
+        user = inputUser;
     }
 
     public static ParseObject getUser() {

@@ -13,7 +13,9 @@ public class DetailAnnouncementActivity extends Activity {
 
     protected TextView announcementTitle;
     protected TextView announcementContext;
-
+    protected String title;
+    protected String context;
+    protected String objectId;
 
 
     @Override
@@ -31,9 +33,9 @@ public class DetailAnnouncementActivity extends Activity {
         announcementContext = (TextView) findViewById(R.id.detailAnnouncementContext);
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String context = intent.getStringExtra("context");
-
+        title = intent.getStringExtra("title");
+        context = intent.getStringExtra("context");
+        objectId = intent.getStringExtra("objectId");
 
         announcementTitle.setText(title);
         announcementContext.setText(context);
@@ -56,9 +58,18 @@ public class DetailAnnouncementActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_announcement_edit) {
+
+            Intent intent = new Intent(this, EditAnnouncementActivity.class);
+            intent.putExtra("title", title);
+            intent.putExtra("context", context);
+            intent.putExtra("objectId", objectId);
+
+            startActivity(intent);
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

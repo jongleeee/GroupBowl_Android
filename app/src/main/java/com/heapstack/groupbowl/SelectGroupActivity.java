@@ -143,6 +143,7 @@ public class SelectGroupActivity extends ListActivity {
                     CurrentMember.setUserPhone((String) user.get("phone"));
                     CurrentMember.setUserEmail((String) user.get("email"));
                     CurrentMember.setUserName((String) user.get("name"));
+                    CurrentGroup.setCurrentTitle((String) user.get("title"));
 
                     Intent intent = new Intent(SelectGroupActivity.this, MainActivity.class);
 

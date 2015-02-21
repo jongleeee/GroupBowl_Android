@@ -112,7 +112,6 @@ public class EventFragment extends ListFragment {
         Intent intent = new Intent(getActivity(), DetailEventActivity.class);
         intent.putExtra("title", (String) mEvents.get(position).get("title"));
         // intent.putExtra("date", (String) mEvents.get(position).get("date"));
-        System.out.println(mEvents.get(position).get("date").getClass().getName());
 
         // Create an instance of SimpleDateFormat used for formatting
         // the string representation of date (month/day/year)
@@ -127,7 +126,18 @@ public class EventFragment extends ListFragment {
 
         intent.putExtra("context", (String) mEvents.get(position).get("contents"));
         intent.putExtra("date", date);
-        intent.putExtra("payment", (String) mEvents.get(position).get("payment"));
+        String payment = (String) mEvents.get(position).get("payment");
+        intent.putExtra("payment", payment);
+        intent.putExtra("objectId", (String) mEvents.get(position).get("objectId"));
+
+        System.out.println("************");
+        System.out.println((String) mEvents.get(position).get("payment"));
+        System.out.println("************");
+        if (payment == "YES") {
+            intent.putExtra("fee", Integer.toString((int) mEvents.get(position).get("fee")));
+            intent.putExtra("venmoId", (String) mEvents.get(position).get("venmoId"));
+
+        }
 
 
         startActivity(intent);

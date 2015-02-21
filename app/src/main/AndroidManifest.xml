@@ -115,6 +115,39 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.heapstack.groupbowl.MainActivity" />
         </activity>
+        <activity
+            android:name=".VenmoWebViewActivity"
+            android:label="@string/title_activity_venmo_web_view"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".EditMemeberActivity"
+            android:label="@string/title_activity_edit_memeber"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditEventPaymentActivity"
+            android:label="@string/title_activity_edit_event_payment"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditEventActivity"
+            android:label="@string/title_activity_edit_event"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditAnnouncementActivity"
+            android:label="@string/title_activity_edit_announcement" >
+        </activity>
     </application>
 
 </manifest>

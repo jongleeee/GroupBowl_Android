@@ -2,6 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity" >
 
+    <item android:id="@+id/action_addAnnouncement"
+        android:title="Add Announcement"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_addEvent"
+        android:title="Add Event"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
     <item android:id="@+id/action_selectGroup"
         android:title="Select Group"
         android:orderInCategory="100"

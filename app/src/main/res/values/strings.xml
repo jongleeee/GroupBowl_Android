@@ -22,5 +22,10 @@
     <string name="title_activity_setting_change_name">SettingChangeNameActivity</string>
     <string name="title_activity_setting_change_phone_main">SettingChangePhoneMainActivity</string>
     <string name="title_activity_setting_change_phone">SettingChangePhoneActivity</string>
+    <string name="title_activity_venmo_web_view">VenmoWebViewActivity</string>
+    <string name="title_activity_edit_memeber">EditMemeberActivity</string>
+    <string name="title_activity_edit_event_payment">EditEventPaymentActivity</string>
+    <string name="title_activity_edit_event">EditEventActivity</string>
+    <string name="title_activity_edit_announcement">EditAnnouncementActivity</string>
 
 </resources>
