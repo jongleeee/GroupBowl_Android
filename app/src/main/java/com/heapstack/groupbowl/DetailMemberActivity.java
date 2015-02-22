@@ -21,6 +21,8 @@ public class DetailMemberActivity extends Activity {
     protected TextView memberPhone;
     protected TextView memberEmail;
 
+    protected String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class DetailMemberActivity extends Activity {
         Intent intent = getIntent();
         String userName = intent.getStringExtra("name");
         String phone = intent.getStringExtra("phone");
-        String email = intent.getStringExtra("email");
+        email = intent.getStringExtra("email");
 
         memberName.setText(userName);
         memberPhone.setText(phone);
@@ -73,9 +75,10 @@ public class DetailMemberActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_edit_member) {
 
-            if (CurrentGroup.getCurrentTitle() == "Leader") {
+            if (CurrentGroup.getCurrentTitle().equals("Leader")) {
 
                 Intent intent = new Intent(this, EditMemeberActivity.class);
+                intent.putExtra("email", email);
                 startActivity(intent);
 
             } else {

@@ -58,6 +58,9 @@
         <activity
             android:name=".DetailAnnouncementActivity"
             android:label="@string/title_activity_detail_announcement" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.heapstack.groupbowl.MainActivity" />
         </activity>
         <activity
             android:name=".SelectGroupActivity"
@@ -147,6 +150,10 @@
         <activity
             android:name=".EditAnnouncementActivity"
             android:label="@string/title_activity_edit_announcement" >
+        </activity>
+        <activity
+            android:name=".EventAttendingListActivity"
+            android:label="@string/title_activity_event_attending_list" >
         </activity>
     </application>
 

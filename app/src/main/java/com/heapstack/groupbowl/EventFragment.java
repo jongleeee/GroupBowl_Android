@@ -116,24 +116,34 @@ public class EventFragment extends ListFragment {
         // Create an instance of SimpleDateFormat used for formatting
         // the string representation of date (month/day/year)
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat tf = new SimpleDateFormat("hh:mm a");
 
         // Get the date today using Calendar object.
         Date eventDate = (Date) mEvents.get(position).get("date");
+
+
         // Using DateFormat format method we can create a string
         // representation of a date with the defined format.
         String date = df.format(eventDate);
-
+        String time = tf.format(eventDate);
 
         intent.putExtra("context", (String) mEvents.get(position).get("contents"));
         intent.putExtra("date", date);
-        String payment = (String) mEvents.get(position).get("payment");
+        intent.putExtra("time", time);
+        String payment;
+        if (mEvents.get(position).get("payment") == null) {
+            payment = "NO";
+        } else {
+            payment = (String) mEvents.get(position).get("payment");
+        }
         intent.putExtra("payment", payment);
-        intent.putExtra("objectId", (String) mEvents.get(position).get("objectId"));
+        intent.putExtra("objectId", (String) mEvents.get(position).getObjectId());
 
         System.out.println("************");
-        System.out.println((String) mEvents.get(position).get("payment"));
+        System.out.println(mEvents.get(position).getObjectId());
         System.out.println("************");
-        if (payment == "YES") {
+
+        if (payment.equals("YES")) {
             intent.putExtra("fee", Integer.toString((int) mEvents.get(position).get("fee")));
             intent.putExtra("venmoId", (String) mEvents.get(position).get("venmoId"));
 

@@ -34,8 +34,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Context"
         android:id="@+id/textView6"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/eventFeeField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -71,33 +70,10 @@
         android:layout_height="150dp"
         android:id="@+id/eventContextField"
         android:layout_below="@+id/eventFeeField"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_alignRight="@+id/eventFeeField"
+        android:layout_alignEnd="@+id/eventFeeField" />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventDate"
-        android:layout_marginTop="40dp"
-        android:paddingTop="135dp"
-        android:scaleY="0.9"
-        android:scaleX="0.9"
-        android:calendarViewShown="false"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventTime"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:layout_below="@+id/datePicker"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -109,6 +85,77 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fee Amount"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/eventVenmoEmailField"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/textView14"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/eventContextField"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Time"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_marginTop="33dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Date"
+        android:id="@+id/setDateButton"
+        android:layout_alignTop="@+id/textView14"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Time"
+        android:id="@+id/setTimeButton"
+        android:layout_below="@+id/setDateButton"
+        android:layout_alignRight="@+id/setDateButton"
+        android:layout_alignEnd="@+id/setDateButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Display Date"
+        android:id="@+id/dateSelected"
+        android:layout_alignTop="@+id/setDateButton"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Display Time"
+        android:id="@+id/timeSelected"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignLeft="@+id/dateSelected"
+        android:layout_alignStart="@+id/dateSelected" />
 
 
 </RelativeLayout>

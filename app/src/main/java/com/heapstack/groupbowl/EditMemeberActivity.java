@@ -105,6 +105,9 @@ public class EditMemeberActivity extends Activity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(currentMember);
         query.whereEqualTo("email", memberEmail);
+
+
+
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject user, ParseException e) {

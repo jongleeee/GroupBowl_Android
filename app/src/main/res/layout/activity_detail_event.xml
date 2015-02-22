@@ -25,19 +25,39 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Event Title"
         android:id="@+id/detailEventTitle"
-        android:layout_below="@+id/detailEventDate"
+        android:layout_below="@+id/detailEventTime"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Event Context"
         android:id="@+id/detailEventContext"
         android:gravity="center"
         android:layout_below="@+id/detailEventTitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Event Time"
+        android:id="@+id/detailEventTime"
+        android:layout_below="@+id/detailEventDate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/detailEventFee"
+        android:layout_below="@+id/detailEventTime"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

@@ -75,11 +75,13 @@ public class AnnouncementFragment extends ListFragment {
                         mAnnouncements = announcements;
                         String[] announcementTitle = new String[mAnnouncements.size()];
                         String[] announcementNews = new String[mAnnouncements.size()];
+                        String[] announcementObjectId = new String[mAnnouncements.size()];
 
                         int i = 0;
                         for (ParseObject announcement : mAnnouncements) {
                             announcementTitle[i] = (String) announcement.get("title");
                             announcementNews[i] = (String) announcement.get("news");
+                            announcementObjectId[i] = (String) announcement.get("objectId");
                             i++;
                         }
 
@@ -107,14 +109,11 @@ public class AnnouncementFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-
-        String val = Integer.toString(position);
-
         // create new fragment with class
         Intent intent = new Intent(getActivity(), DetailAnnouncementActivity.class);
         intent.putExtra("title", (String) mAnnouncements.get(position).get("title"));
         intent.putExtra("context", (String) mAnnouncements.get(position).get("news"));
-        intent.putExtra("objectId", (String) mAnnouncements.get(position).get("objectId"));
+        intent.putExtra("objectId", (String) mAnnouncements.get(position).getObjectId());
 
 
         startActivity(intent);

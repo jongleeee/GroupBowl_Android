@@ -27,5 +27,6 @@
     <string name="title_activity_edit_event_payment">EditEventPaymentActivity</string>
     <string name="title_activity_edit_event">EditEventActivity</string>
     <string name="title_activity_edit_announcement">EditAnnouncementActivity</string>
+    <string name="title_activity_event_attending_list">EventAttendingListActivity</string>
 
 </resources>

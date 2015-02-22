@@ -23,6 +23,9 @@ public class DetailEventActivity extends Activity {
     protected TextView eventTitle;
     protected TextView eventContext;
     protected TextView eventDate;
+    protected TextView eventTime;
+    protected TextView eventFee;
+
     protected String payment;
     protected String fee;
     protected String venmoId;
@@ -30,6 +33,7 @@ public class DetailEventActivity extends Activity {
     protected String eventId;
     protected String context;
     protected String date;
+    protected String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +49,30 @@ public class DetailEventActivity extends Activity {
         eventTitle = (TextView) findViewById(R.id.detailEventTitle);
         eventContext = (TextView) findViewById(R.id.detailEventContext);
         eventDate = (TextView) findViewById(R.id.detailEventDate);
+        eventTime = (TextView) findViewById(R.id.detailEventTime);
+        eventFee = (TextView) findViewById(R.id.detailEventFee);
 
         Intent intent = getIntent();
         title = intent.getStringExtra("title");
         context = intent.getStringExtra("context");
         date = intent.getStringExtra("date");
+        time = intent.getStringExtra("time");
         eventId = intent.getStringExtra("objectId");
 
         payment = intent.getStringExtra("payment");
-        if (payment == "YES") {
+        if (payment.equals("YES")) {
             fee = intent.getStringExtra("fee");
             venmoId = intent.getStringExtra("venmoId");
+            eventFee.setText("$ " + fee);
         }
-
 
 
         eventTitle.setText(title);
         eventContext.setText(context);
         eventDate.setText(date);
+        eventTime.setText(time);
+
+
 
 
 
@@ -86,13 +96,23 @@ public class DetailEventActivity extends Activity {
 
             // add self to the event attending
             String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
+
+
+
             // if attend
-            if (payment == "YES") {
+            if (payment.equals("YES")) {
+
+                System.out.println("*************");
+                System.out.println("*************");
+
                 if (VenmoLibrary.isVenmoInstalled(getApplicationContext())) {
                     Intent venmoIntent = VenmoLibrary.openVenmoPayment("2220", "GroupBowl", venmoId, fee, title, "pay");
                     startActivityForResult(venmoIntent, 1);
 
 
+                } else {
+
+                    System.out.println("NOT INSTALLED VENMO");
                 }
 
 
@@ -105,11 +125,15 @@ public class DetailEventActivity extends Activity {
 
         } else if (id == R.id.action_event_list) {
 
+            Intent intent = new Intent(this, EventAttendingListActivity.class);
+            intent.putExtra("objectId", eventId);
+            startActivity(intent);
+
         } else if (id == R.id.action_event_edit) {
 
-            if (CurrentGroup.getCurrentTitle() == "Leader") {
+            if (CurrentGroup.getCurrentTitle().equals("Leader")) {
 
-                if (payment == "YES") {
+                if (payment.equals("YES")) {
 
                     Intent intent = new Intent(this, EditEventPaymentActivity.class);
                     intent.putExtra("title", title);
@@ -117,6 +141,7 @@ public class DetailEventActivity extends Activity {
                     intent.putExtra("date", date);
                     intent.putExtra("fee", fee);
                     intent.putExtra("venmoId", venmoId);
+                    intent.putExtra("objectId", eventId);
                     startActivity(intent);
 
                 } else {
@@ -125,6 +150,7 @@ public class DetailEventActivity extends Activity {
                     intent.putExtra("title", title);
                     intent.putExtra("context", context);
                     intent.putExtra("date", date);
+                    intent.putExtra("objectId", eventId);
                     startActivity(intent);
                 }
 
@@ -183,9 +209,6 @@ public class DetailEventActivity extends Activity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
         query.whereEqualTo("objectId", eventId);
 
-        System.out.println("************");
-        System.out.println(eventId);
-        System.out.println("************");
 
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override

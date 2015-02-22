@@ -1,6 +1,7 @@
 package com.heapstack.groupbowl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,6 +43,9 @@ public class DetailAnnouncementActivity extends Activity {
 
 
 
+
+
+
     }
 
 
@@ -60,12 +64,25 @@ public class DetailAnnouncementActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_announcement_edit) {
 
-            Intent intent = new Intent(this, EditAnnouncementActivity.class);
-            intent.putExtra("title", title);
-            intent.putExtra("context", context);
-            intent.putExtra("objectId", objectId);
 
-            startActivity(intent);
+            if (CurrentGroup.getCurrentTitle().equals("Leader")) {
+                Intent intent = new Intent(this, EditAnnouncementActivity.class);
+                intent.putExtra("title", title);
+                intent.putExtra("context", context);
+                intent.putExtra("objectId", objectId);
+
+                startActivity(intent);
+            } else {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailAnnouncementActivity.this);
+                builder.setMessage("Must be a leader.")
+                        .setTitle("Oops!")
+                        .setPositiveButton(android.R.string.ok, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+            }
+
 
             return true;
         }

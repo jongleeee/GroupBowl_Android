@@ -11,6 +11,7 @@ import com.parse.ParseUser;
 import android.app.Activity;
 import android.app.ActionBar;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -170,11 +171,36 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             Intent intent = new Intent(this, SelectGroupActivity.class);
             startActivity(intent);
         } else if (id == R.id.action_addEvent) {
-            Intent intent = new Intent(this, CreateEventOptionActivity.class);
-            startActivity(intent);
+
+            if (CurrentGroup.getCurrentTitle().equals("Leader")) {
+
+                Intent intent = new Intent(this, CreateEventOptionActivity.class);
+                startActivity(intent);
+            } else {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Must be a leader.")
+                        .setTitle("Oops!")
+                        .setPositiveButton(android.R.string.ok, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
         } else if (id == R.id.action_addAnnouncement) {
-            Intent intent = new Intent(this, CreateAnnouncementActivity.class);
-            startActivity(intent);
+
+            if (CurrentGroup.getCurrentTitle().equals("Leader")) {
+                Intent intent = new Intent(this, CreateAnnouncementActivity.class);
+                startActivity(intent);
+            } else {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Must be a leader.")
+                        .setTitle("Oops!")
+                        .setPositiveButton(android.R.string.ok, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+
         }
 
 

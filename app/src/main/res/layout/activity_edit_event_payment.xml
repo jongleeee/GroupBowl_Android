@@ -33,8 +33,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Context"
         android:id="@+id/textView6"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/editEventPaymentFeeField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -49,7 +48,7 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editEventVenmoEmailField"
+        android:id="@+id/editEventPaymentVenmoEmailField"
         android:layout_below="@+id/editEventPaymentTitleField"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -58,54 +57,103 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editEventFeeField"
-        android:layout_below="@+id/editEventVenmoEmailField"
+        android:id="@+id/editEventPaymentFeeField"
+        android:layout_below="@+id/editEventPaymentVenmoEmailField"
         android:inputType="number"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:id="@+id/editEventContextField"
-        android:layout_below="@+id/editEventFeeField"
+        android:id="@+id/editEventPaymentContextField"
+        android:layout_below="@+id/editEventPaymentFeeField"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventDate"
-        android:layout_marginTop="40dp"
-        android:paddingTop="135dp"
-        android:scaleY="0.9"
-        android:scaleX="0.9"
-        android:calendarViewShown="false"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventTime"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:layout_below="@+id/datePicker"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create"
-        android:id="@+id/eventPaymentSubmit"
+        android:text="Update"
+        android:id="@+id/editEventPaymentUpdateButton"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/textView18"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/editEventPaymentContextField"
+        android:layout_alignRight="@+id/textView19"
+        android:layout_alignEnd="@+id/textView19" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Date"
+        android:id="@+id/setDateButton"
+        android:layout_alignTop="@+id/textView18"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Time"
+        android:id="@+id/textView19"
+        android:layout_below="@+id/setDateButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Time"
+        android:id="@+id/setTimeButton"
+        android:layout_below="@+id/setDateButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="date"
+        android:id="@+id/dateSelected"
+        android:layout_alignTop="@+id/setDateButton"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="time"
+        android:id="@+id/timeSelected"
+        android:layout_below="@+id/setDateButton"
+        android:layout_alignLeft="@+id/dateSelected"
+        android:layout_alignStart="@+id/dateSelected" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fee Amount"
+        android:id="@+id/textView20"
+        android:layout_below="@+id/editEventPaymentVenmoEmailField"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
