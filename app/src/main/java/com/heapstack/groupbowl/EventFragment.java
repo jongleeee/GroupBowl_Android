@@ -3,12 +3,14 @@ package com.heapstack.groupbowl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,6 +30,8 @@ public class EventFragment extends ListFragment {
 
     protected List<ParseObject> mEvents;
     private ProgressBar spinner;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +42,14 @@ public class EventFragment extends ListFragment {
 
         View rootView = inflater.inflate(R.layout.fragment_event, container, false);
         spinner = (ProgressBar)rootView.findViewById(R.id.progressBarEvent);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mSwipeRefreshLayout.setColorScheme(
+                R.color.swipeRefresh1, R.color.swipeRefresh2,
+                R.color.swipeRefresh3, R.color.swipeRefresh4
+        );
+
         return rootView;
     }
 
@@ -56,41 +68,7 @@ public class EventFragment extends ListFragment {
         if (CurrentMember.getUserGroup() == null) {
 
         } else {
-            String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
-
-            // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
-
-            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
-            query.orderByAscending(ParseConstants.KEY_NAME);
-            query.setLimit(1000);
-
-            spinner.setVisibility(View.VISIBLE);
-
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> events, ParseException e) {
-
-                    spinner.setVisibility(View.GONE);
-
-                    if (e == null) {
-                        // success
-                        mEvents = events;
-                        String[] eventTitle = new String[mEvents.size()];
-                        int i = 0;
-                        for (ParseObject event : mEvents) {
-                            eventTitle[i] = (String) event.get("title");
-                            i++;
-                        }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                                android.R.layout.simple_list_item_1, eventTitle);
-                        setListAdapter(adapter);
-
-                    } else {
-
-
-                    }
-                }
-            });
+            retrieveEvent();
 
 
         }
@@ -98,6 +76,51 @@ public class EventFragment extends ListFragment {
 
 
 
+    }
+
+    private void retrieveEvent() {
+        String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
+
+        // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
+        query.orderByAscending(ParseConstants.KEY_NAME);
+        query.setLimit(1000);
+
+        spinner.setVisibility(View.VISIBLE);
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> events, ParseException e) {
+
+                spinner.setVisibility(View.GONE);
+
+                if (mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+
+                if (e == null) {
+                    // success
+                    mEvents = events;
+//                        String[] eventTitle = new String[mEvents.size()];
+//                        int i = 0;
+//                        for (ParseObject event : mEvents) {
+//                            eventTitle[i] = (String) event.get("title");
+//                            i++;
+//                        }
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+//                                android.R.layout.simple_list_item_1, eventTitle);
+
+                    EventAdapter adapter = new EventAdapter(getActivity(), mEvents);
+
+                    setListAdapter(adapter);
+
+                } else {
+
+
+                }
+            }
+        });
     }
 
 
@@ -153,5 +176,14 @@ public class EventFragment extends ListFragment {
         startActivity(intent);
 
     }
+
+
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            Toast.makeText(getActivity(), "Refreshing!", Toast.LENGTH_SHORT).show();
+            retrieveEvent();
+        }
+    };
 
 }

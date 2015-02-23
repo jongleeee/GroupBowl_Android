@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,9 +15,11 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.parse.DeleteCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
@@ -140,6 +143,11 @@ public class EditEventPaymentActivity extends Activity {
                                     public void done(ParseException e) {
                                         if (e == null) {
 
+                                            ParsePush push = new ParsePush();
+                                            push.setChannel(CurrentGroup.getCurrentGroupName());
+                                            push.setMessage(currentTitle + " has been updated");
+                                            push.sendInBackground();
+
                                             Intent intent = new Intent(EditEventPaymentActivity.this, MainActivity.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -230,7 +238,57 @@ public class EditEventPaymentActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete) {
+
+            String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
+            query.whereEqualTo("objectId", objectId);
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject event, ParseException e) {
+                    if (e == null) {
+
+
+                        event.deleteInBackground(new DeleteCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(EditEventPaymentActivity.this);
+                                builder.setMessage("Deleted.")
+                                        .setTitle("Yes!")
+                                        .setPositiveButton(android.R.string.ok, null);
+                                AlertDialog dialog = builder.create();
+
+
+                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+
+                                        Intent intent = new Intent(EditEventPaymentActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    }
+                                });
+
+                                dialog.show();
+
+                            }
+                        });
+
+
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EditEventPaymentActivity.this);
+                        builder.setMessage("Cannot delete.")
+                                .setTitle("Oops!")
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
+                }
+            });
+
             return true;
         }
 

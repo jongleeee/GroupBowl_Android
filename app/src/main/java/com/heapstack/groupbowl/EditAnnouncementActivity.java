@@ -2,6 +2,7 @@ package com.heapstack.groupbowl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,9 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.DeleteCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
@@ -93,19 +96,39 @@ public class EditAnnouncementActivity extends Activity {
                                         public void done(ParseException e) {
                                             if (e == null) {
 
+                                                ParsePush push = new ParsePush();
+                                                push.setChannel(CurrentGroup.getCurrentGroupName());
+                                                push.setMessage(currentTitle + " has been updated");
+                                                push.sendInBackground();
+
+
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(EditAnnouncementActivity.this);
                                                 builder.setMessage("Updated.")
                                                         .setTitle("Yes!")
                                                         .setPositiveButton(android.R.string.ok, null);
                                                 AlertDialog dialog = builder.create();
+
+                                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                    @Override
+                                                    public void onDismiss(DialogInterface dialog) {
+
+                                                        Intent intent = new Intent(EditAnnouncementActivity.this, MainActivity.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                        startActivity(intent);
+
+                                                    }
+                                                });
+
                                                 dialog.show();
 
-                                                Intent intent = new Intent(EditAnnouncementActivity.this, DetailEventActivity.class);
-                                                intent.putExtra("title", newTitle);
-                                                intent.putExtra("context", newContext);
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                startActivity(intent);
+
+
+
+
+
+
+
 
                                             } else {
                                                 System.out.println(e);
@@ -144,7 +167,58 @@ public class EditAnnouncementActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete) {
+
+            String currentAnnouncement = CurrentGroup.getCurrentGroupName() + ParseConstants.ANNOUNCEMENT;
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentAnnouncement);
+            query.whereEqualTo("objectId", objectId);
+            query.getFirstInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject event, ParseException e) {
+                    if (e == null) {
+
+
+                        event.deleteInBackground(new DeleteCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(EditAnnouncementActivity.this);
+                                builder.setMessage("Deleted.")
+                                        .setTitle("Yes!")
+                                        .setPositiveButton(android.R.string.ok, null);
+                                AlertDialog dialog = builder.create();
+
+
+                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+
+                                        Intent intent = new Intent(EditAnnouncementActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    }
+                                });
+
+                                dialog.show();
+
+                            }
+                        });
+
+
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EditAnnouncementActivity.this);
+                        builder.setMessage("Cannot delete.")
+                                .setTitle("Oops!")
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
+                }
+            });
+
+
             return true;
         }
 

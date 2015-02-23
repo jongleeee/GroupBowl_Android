@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.TimePicker;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
 import java.util.Calendar;
@@ -40,6 +42,9 @@ public class CreateEventPaymentActivity extends Activity {
     protected int mSelectedMonth, mSelectedDay, mSelectedYear;
     private int mSelectedHour;
     private int mSelectedMinutes;
+
+
+    protected String eventTitle;
 
 
     @Override
@@ -89,13 +94,13 @@ public class CreateEventPaymentActivity extends Activity {
         mEventSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = mEventTitle.getText().toString().trim();
+                eventTitle = mEventTitle.getText().toString().trim();
                 String venmoEmail = mEventVenmoEmail.getText().toString().trim();
                 String context = mEventContext.getText().toString().trim();
                 String fee = mEventFee.getText().toString().trim();
 
 
-                if (title.isEmpty() || venmoEmail.isEmpty() || context.isEmpty() || fee.isEmpty()) {
+                if (eventTitle.isEmpty() || venmoEmail.isEmpty() || context.isEmpty() || fee.isEmpty()) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreateEventPaymentActivity.this);
                     builder.setMessage("Please fill out all the information.")
@@ -110,7 +115,7 @@ public class CreateEventPaymentActivity extends Activity {
 
                     Date eventDate = new Date(mSelectedYear-1900, mSelectedMonth, mSelectedDay, mSelectedHour, mSelectedMinutes);
 
-                    event.put("title", title);
+                    event.put("title", eventTitle);
                     event.put("venmoId", venmoEmail);
                     event.put("payment", "YES");
                     event.put("fee", Integer.parseInt(fee));
@@ -123,10 +128,35 @@ public class CreateEventPaymentActivity extends Activity {
                         public void done(ParseException e) {
                             if (e == null) {
 
-                                Intent intent = new Intent(CreateEventPaymentActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                ParsePush push = new ParsePush();
+                                push.setChannel(CurrentGroup.getCurrentGroupName());
+                                push.setMessage(eventTitle);
+                                push.sendInBackground();
+
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(CreateEventPaymentActivity.this);
+                                builder.setMessage("Event has been created.")
+                                        .setTitle("Yes!")
+                                        .setPositiveButton(android.R.string.ok, null);
+                                AlertDialog dialog = builder.create();
+
+                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+
+                                        Intent intent = new Intent(CreateEventPaymentActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    }
+                                });
+
+
+                                dialog.show();
+
+
+
 
                             } else {
 

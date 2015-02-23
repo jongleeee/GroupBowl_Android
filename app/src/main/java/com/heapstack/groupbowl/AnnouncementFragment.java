@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -29,6 +31,7 @@ public class AnnouncementFragment extends ListFragment {
     public static String groupName;
     protected List<ParseObject> mAnnouncements;
     private ProgressBar spinner;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
@@ -36,6 +39,13 @@ public class AnnouncementFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_announcement, container, false);
         spinner = (ProgressBar)rootView.findViewById(R.id.progressBarAnnouncement);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mSwipeRefreshLayout.setColorScheme(
+                R.color.swipeRefresh1, R.color.swipeRefresh2,
+                R.color.swipeRefresh3, R.color.swipeRefresh4
+        );
 
         return rootView;
     }
@@ -54,54 +64,65 @@ public class AnnouncementFragment extends ListFragment {
         if (CurrentMember.getUserGroup() == null) {
 
         } else {
-            String currentAnnouncement = CurrentGroup.getCurrentGroupName() + ParseConstants.ANNOUNCEMENT;
-
-            // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
-
-            ParseQuery<ParseObject> query = ParseQuery.getQuery(currentAnnouncement);
-            query.orderByAscending(ParseConstants.KEY_UPDATED);
-            query.setLimit(1000);
-
-            spinner.setVisibility(View.VISIBLE);
-
-            query.findInBackground(new FindCallback<ParseObject>() {
-                @Override
-                public void done(List<ParseObject> announcements, ParseException e) {
-
-                    spinner.setVisibility(View.GONE);
-
-                    if (e == null) {
-                        // success
-                        mAnnouncements = announcements;
-                        String[] announcementTitle = new String[mAnnouncements.size()];
-                        String[] announcementNews = new String[mAnnouncements.size()];
-                        String[] announcementObjectId = new String[mAnnouncements.size()];
-
-                        int i = 0;
-                        for (ParseObject announcement : mAnnouncements) {
-                            announcementTitle[i] = (String) announcement.get("title");
-                            announcementNews[i] = (String) announcement.get("news");
-                            announcementObjectId[i] = (String) announcement.get("objectId");
-                            i++;
-                        }
-
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                                android.R.layout.simple_list_item_1, announcementTitle);
-                        setListAdapter(adapter);
-
-                    } else {
-
-
-                    }
-                }
-            });
+            retrieveAnnouncement();
 
         }
 
 
 
 
+    }
+
+    private void retrieveAnnouncement() {
+        String currentAnnouncement = CurrentGroup.getCurrentGroupName() + ParseConstants.ANNOUNCEMENT;
+
+        // String parseAnnouncement = groupName.concat(ParseConstants.ANNOUNCEMENT);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(currentAnnouncement);
+        query.orderByAscending(ParseConstants.KEY_UPDATED);
+        query.setLimit(1000);
+
+        spinner.setVisibility(View.VISIBLE);
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> announcements, ParseException e) {
+
+                spinner.setVisibility(View.GONE);
+
+                if (mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+
+                if (e == null) {
+                    // success
+                    mAnnouncements = announcements;
+                    String[] announcementTitle = new String[mAnnouncements.size()];
+                    String[] announcementNews = new String[mAnnouncements.size()];
+                    String[] announcementObjectId = new String[mAnnouncements.size()];
+
+                    int i = 0;
+                    for (ParseObject announcement : mAnnouncements) {
+                        announcementTitle[i] = (String) announcement.get("title");
+                        announcementNews[i] = (String) announcement.get("news");
+                        announcementObjectId[i] = (String) announcement.get("objectId");
+                        i++;
+                    }
+
+//
+//                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+//                                android.R.layout.simple_list_item_1, announcementTitle);
+
+                    AnnouncementAdapter adapter = new AnnouncementAdapter(getActivity(), mAnnouncements);
+
+                    setListAdapter(adapter);
+
+                } else {
+
+
+                }
+            }
+        });
     }
 
 
@@ -120,5 +141,15 @@ public class AnnouncementFragment extends ListFragment {
 
 
     }
+
+
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            Toast.makeText(getActivity(), "Refreshing!", Toast.LENGTH_SHORT).show();
+            retrieveAnnouncement();
+        }
+    };
+
 
 }

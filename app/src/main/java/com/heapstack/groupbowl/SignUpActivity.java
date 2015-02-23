@@ -1,5 +1,6 @@
 package com.heapstack.groupbowl;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.heapstack.groupbowl.R;
 import com.parse.Parse;
@@ -30,6 +32,8 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
 
         mEmail = (EditText)findViewById(R.id.signup_emailField);
         mPassword = (EditText)findViewById(R.id.signup_password);
@@ -40,6 +44,10 @@ public class SignUpActivity extends Activity {
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(), "Signing up...", Toast.LENGTH_SHORT).show();
+
+
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String name = mName.getText().toString().trim();

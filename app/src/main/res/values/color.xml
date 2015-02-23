@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="swipeRefresh1">#69041D</color>
+    <color name="swipeRefresh2">#cc0000</color>
+    <color name="swipeRefresh3">#f9304f</color>
+    <color name="swipeRefresh4">#cc0000</color>
+    <color name="apptheme_color">#cc0000</color>
+    <color name="text_color">#69041D</color>
+
+</resources>

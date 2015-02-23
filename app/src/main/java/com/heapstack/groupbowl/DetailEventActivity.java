@@ -35,6 +35,8 @@ public class DetailEventActivity extends Activity {
     protected String date;
     protected String time;
 
+    protected String currentEvent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,8 @@ public class DetailEventActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
 
         eventTitle = (TextView) findViewById(R.id.detailEventTitle);
         eventContext = (TextView) findViewById(R.id.detailEventContext);
@@ -60,7 +64,7 @@ public class DetailEventActivity extends Activity {
         eventId = intent.getStringExtra("objectId");
 
         payment = intent.getStringExtra("payment");
-        if (payment.equals("YES")) {
+        if ((payment != null) && (payment.equals("YES"))) {
             fee = intent.getStringExtra("fee");
             venmoId = intent.getStringExtra("venmoId");
             eventFee.setText("$ " + fee);
@@ -95,30 +99,33 @@ public class DetailEventActivity extends Activity {
         if (id == R.id.action_event_attend) {
 
             // add self to the event attending
-            String currentEvent = CurrentGroup.getCurrentGroupName() + ParseConstants.EVENT;
 
 
 
             // if attend
             if (payment.equals("YES")) {
 
-                System.out.println("*************");
-                System.out.println("*************");
-
                 if (VenmoLibrary.isVenmoInstalled(getApplicationContext())) {
+
                     Intent venmoIntent = VenmoLibrary.openVenmoPayment("2220", "GroupBowl", venmoId, fee, title, "pay");
                     startActivityForResult(venmoIntent, 1);
 
-
                 } else {
 
-                    System.out.println("NOT INSTALLED VENMO");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DetailEventActivity.this);
+                    builder.setMessage("Must have Venmo.")
+                            .setTitle("Oops!")
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                 }
 
 
             } else {
 
                 addToAttend(currentEvent);
+
             }
 
             return true;
@@ -152,6 +159,7 @@ public class DetailEventActivity extends Activity {
                     intent.putExtra("date", date);
                     intent.putExtra("objectId", eventId);
                     startActivity(intent);
+
                 }
 
 
@@ -178,14 +186,25 @@ public class DetailEventActivity extends Activity {
     {
         switch(requestCode) {
             case 1: {
+
+
+
                 if(resultCode == RESULT_OK) {
                     String signedrequest = data.getStringExtra("signedrequest");
+
+
                     if(signedrequest != null) {
                         VenmoResponse response = (new VenmoLibrary()).validateVenmoPaymentResponse(signedrequest, "UaNkRnQg2tHtpbmFX6zsvsWjp9bRVPg7");
+
+
+
                         if(response.getSuccess().equals("1")) {
                             //Payment successful.  Use data from response object to display a success message
                             String note = response.getNote();
                             String amount = response.getAmount();
+
+
+                            addToAttend(currentEvent);
                         }
                     }
                     else {
@@ -195,6 +214,7 @@ public class DetailEventActivity extends Activity {
                 }
                 else if(resultCode == RESULT_CANCELED) {
                     //The user cancelled the payment
+
                 }
                 break;
             }
@@ -231,7 +251,7 @@ public class DetailEventActivity extends Activity {
                             if (e == null) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailEventActivity.this);
                                 builder.setMessage("Thanks for attending.")
-                                        .setTitle("Oops!")
+                                        .setTitle("Yes!")
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();

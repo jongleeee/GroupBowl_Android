@@ -1,5 +1,6 @@
 package com.heapstack.groupbowl;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,15 +12,18 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.heapstack.groupbowl.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 public class LoginActivity extends Activity {
 
-    protected Button mSignUpButton;
+    protected TextView mSignUpButton;
     protected EditText mEmail;
     protected EditText mPassword;
     protected Button mLoginButton;
@@ -30,7 +34,10 @@ public class LoginActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_login);
 
-        mSignUpButton = (Button)findViewById(R.id.signupButton);
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
+
+        mSignUpButton = (TextView)findViewById(R.id.signupButton);
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +55,10 @@ public class LoginActivity extends Activity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(), "Loggin in...", Toast.LENGTH_SHORT).show();
+
+
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 

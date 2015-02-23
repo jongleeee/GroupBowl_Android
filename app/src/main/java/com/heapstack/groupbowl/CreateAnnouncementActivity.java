@@ -2,6 +2,7 @@ package com.heapstack.groupbowl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
 
@@ -65,17 +67,33 @@ public class CreateAnnouncementActivity extends Activity {
                         public void done(ParseException e) {
                             if (e == null) {
 
+                                ParsePush push = new ParsePush();
+                                push.setChannel(CurrentGroup.getCurrentGroupName());
+                                push.setMessage(newTitle);
+                                push.sendInBackground();
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(CreateAnnouncementActivity.this);
                                 builder.setMessage("Announcement created.")
                                         .setTitle("Yes!")
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
+
+
+                                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+
+                                        Intent intent = new Intent(CreateAnnouncementActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    }
+                                });
+
                                 dialog.show();
 
-                                Intent intent = new Intent(CreateAnnouncementActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+
 
 
                             } else {

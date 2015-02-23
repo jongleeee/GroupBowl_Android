@@ -17,6 +17,7 @@ import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -135,6 +136,8 @@ public class SelectGroupActivity extends ListActivity {
                 spinner.setVisibility(View.GONE);
 
                 if (e == null) {
+
+                    ParsePush.subscribeInBackground(CurrentGroup.getCurrentGroupName());
 
                     CurrentGroup.setCurrentTitle((String) user.get("title"));
                     System.out.println(CurrentGroup.getCurrentTitle());
