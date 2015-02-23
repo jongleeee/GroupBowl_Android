@@ -54,29 +54,18 @@
         android:background="@android:color/white"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GroupBowl"
-        android:id="@+id/eventTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="club management"
         android:id="@+id/subtitle"
-        android:layout_below="@+id/eventTitle"
-        android:layout_centerHorizontal="true"
         android:textSize="13sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        />
+        android:layout_above="@+id/login_emailField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +82,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_above="@+id/subtitle"
-        android:paddingBottom="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/groupbowl_logo_white_big"/>
 
 </RelativeLayout>

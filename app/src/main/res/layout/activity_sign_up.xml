@@ -13,26 +13,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GroupBowl"
-        android:id="@+id/eventTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="club management"
         android:id="@+id/subtitle"
-        android:layout_below="@+id/eventTitle"
-        android:layout_centerHorizontal="true"
         android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:layout_alignBottom="@+id/signup_emailField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -101,5 +89,13 @@
         android:layout_below="@+id/signup_phone"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text_color"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/groupbowl_logo_white_big"
+        android:layout_alignBottom="@+id/subtitle" />
 
 </RelativeLayout>

@@ -24,7 +24,7 @@
     <application
         android:name=".GroupBowlApplication"
         android:allowBackup="true"
-        android:icon="@drawable/groupbowl_launcher"
+        android:icon="@drawable/groupbowl_logo"
         android:label="@string/app_name"
         android:theme="@style/Theme.Groupbowl" >
         <activity
