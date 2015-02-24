@@ -85,6 +85,8 @@ public class EventFragment extends ListFragment {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(currentEvent);
         query.orderByAscending(ParseConstants.KEY_NAME);
+        Date currentDate = new Date();
+        query.whereGreaterThanOrEqualTo("date", currentDate);
         query.setLimit(1000);
 
         spinner.setVisibility(View.VISIBLE);

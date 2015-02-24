@@ -1,0 +1,301 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionCode
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:5:5
+	android:name
+		ADDED from AndroidManifest.xml:5:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:6:5
+	android:name
+		ADDED from AndroidManifest.xml:6:22
+uses-permission#android.permission.WAKE_LOCK
+ADDED from AndroidManifest.xml:9:5
+	android:name
+		ADDED from AndroidManifest.xml:9:22
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:10:5
+	android:name
+		ADDED from AndroidManifest.xml:10:22
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from AndroidManifest.xml:11:5
+	android:name
+		ADDED from AndroidManifest.xml:11:22
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from AndroidManifest.xml:12:5
+	android:name
+		ADDED from AndroidManifest.xml:12:22
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:22
+permission#com.heapstack.groupbowl.permission.C2D_MESSAGE
+ADDED from AndroidManifest.xml:19:5
+	android:protectionLevel
+		ADDED from AndroidManifest.xml:19:17
+	android:name
+		ADDED from AndroidManifest.xml:20:9
+uses-permission#com.heapstack.groupbowl.permission.C2D_MESSAGE
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+application
+ADDED from AndroidManifest.xml:24:5
+	android:label
+		ADDED from AndroidManifest.xml:28:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:26:9
+	android:icon
+		ADDED from AndroidManifest.xml:27:9
+	android:theme
+		ADDED from AndroidManifest.xml:29:9
+	android:name
+		ADDED from AndroidManifest.xml:25:9
+activity#com.heapstack.groupbowl.MainActivity
+ADDED from AndroidManifest.xml:30:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:33:13
+	android:label
+		ADDED from AndroidManifest.xml:32:13
+	android:name
+		ADDED from AndroidManifest.xml:31:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:34:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:35:17
+	android:name
+		ADDED from AndroidManifest.xml:35:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:37:17
+	android:name
+		ADDED from AndroidManifest.xml:37:27
+activity#com.heapstack.groupbowl.LoginActivity
+ADDED from AndroidManifest.xml:40:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:43:13
+	android:label
+		ADDED from AndroidManifest.xml:42:13
+	android:name
+		ADDED from AndroidManifest.xml:41:13
+activity#com.heapstack.groupbowl.SignUpActivity
+ADDED from AndroidManifest.xml:45:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:49:13
+	android:label
+		ADDED from AndroidManifest.xml:47:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:48:13
+	android:name
+		ADDED from AndroidManifest.xml:46:13
+activity#com.heapstack.groupbowl.AddMemberActivity
+ADDED from AndroidManifest.xml:51:9
+	android:label
+		ADDED from AndroidManifest.xml:53:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:54:13
+	android:name
+		ADDED from AndroidManifest.xml:52:13
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from AndroidManifest.xml:55:13
+	android:name
+		ADDED from AndroidManifest.xml:56:17
+	android:value
+		ADDED from AndroidManifest.xml:57:17
+activity#com.heapstack.groupbowl.DetailMemberActivity
+ADDED from AndroidManifest.xml:59:9
+	android:label
+		ADDED from AndroidManifest.xml:61:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:62:13
+	android:name
+		ADDED from AndroidManifest.xml:60:13
+activity#com.heapstack.groupbowl.DetailEventActivity
+ADDED from AndroidManifest.xml:67:9
+	android:label
+		ADDED from AndroidManifest.xml:69:13
+	android:name
+		ADDED from AndroidManifest.xml:68:13
+activity#com.heapstack.groupbowl.DetailAnnouncementActivity
+ADDED from AndroidManifest.xml:74:9
+	android:label
+		ADDED from AndroidManifest.xml:76:13
+	android:name
+		ADDED from AndroidManifest.xml:75:13
+activity#com.heapstack.groupbowl.SelectGroupActivity
+ADDED from AndroidManifest.xml:81:9
+	android:label
+		ADDED from AndroidManifest.xml:83:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:84:13
+	android:name
+		ADDED from AndroidManifest.xml:82:13
+activity#com.heapstack.groupbowl.CreateAnnouncementActivity
+ADDED from AndroidManifest.xml:89:9
+	android:label
+		ADDED from AndroidManifest.xml:91:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:92:13
+	android:name
+		ADDED from AndroidManifest.xml:90:13
+activity#com.heapstack.groupbowl.CreateEventOptionActivity
+ADDED from AndroidManifest.xml:97:9
+	android:label
+		ADDED from AndroidManifest.xml:99:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:100:13
+	android:name
+		ADDED from AndroidManifest.xml:98:13
+activity#com.heapstack.groupbowl.CreateEventActivity
+ADDED from AndroidManifest.xml:105:9
+	android:label
+		ADDED from AndroidManifest.xml:107:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:108:13
+	android:name
+		ADDED from AndroidManifest.xml:106:13
+activity#com.heapstack.groupbowl.CreateEventPaymentActivity
+ADDED from AndroidManifest.xml:113:9
+	android:label
+		ADDED from AndroidManifest.xml:115:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:116:13
+	android:name
+		ADDED from AndroidManifest.xml:114:13
+activity#com.heapstack.groupbowl.SettingChangeNameActivity
+ADDED from AndroidManifest.xml:121:9
+	android:label
+		ADDED from AndroidManifest.xml:123:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:124:13
+	android:name
+		ADDED from AndroidManifest.xml:122:13
+activity#com.heapstack.groupbowl.SettingChangePhoneActivity
+ADDED from AndroidManifest.xml:129:9
+	android:label
+		ADDED from AndroidManifest.xml:131:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:132:13
+	android:name
+		ADDED from AndroidManifest.xml:130:13
+activity#com.heapstack.groupbowl.VenmoWebViewActivity
+ADDED from AndroidManifest.xml:137:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:140:13
+	android:label
+		ADDED from AndroidManifest.xml:139:13
+	android:name
+		ADDED from AndroidManifest.xml:138:13
+activity#com.heapstack.groupbowl.EditMemeberActivity
+ADDED from AndroidManifest.xml:142:9
+	android:label
+		ADDED from AndroidManifest.xml:144:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:145:13
+	android:name
+		ADDED from AndroidManifest.xml:143:13
+activity#com.heapstack.groupbowl.EditEventPaymentActivity
+ADDED from AndroidManifest.xml:150:9
+	android:label
+		ADDED from AndroidManifest.xml:152:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:153:13
+	android:name
+		ADDED from AndroidManifest.xml:151:13
+activity#com.heapstack.groupbowl.EditEventActivity
+ADDED from AndroidManifest.xml:158:9
+	android:label
+		ADDED from AndroidManifest.xml:160:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:161:13
+	android:name
+		ADDED from AndroidManifest.xml:159:13
+activity#com.heapstack.groupbowl.EditAnnouncementActivity
+ADDED from AndroidManifest.xml:166:9
+	android:label
+		ADDED from AndroidManifest.xml:168:13
+	android:name
+		ADDED from AndroidManifest.xml:167:13
+activity#com.heapstack.groupbowl.EventAttendingListActivity
+ADDED from AndroidManifest.xml:170:9
+	android:label
+		ADDED from AndroidManifest.xml:172:13
+	android:name
+		ADDED from AndroidManifest.xml:171:13
+service#com.parse.PushService
+ADDED from AndroidManifest.xml:175:9
+	android:name
+		ADDED from AndroidManifest.xml:175:18
+receiver#com.parse.ParseBroadcastReceiver
+ADDED from AndroidManifest.xml:176:9
+	android:name
+		ADDED from AndroidManifest.xml:176:19
+intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:177:13
+action#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:178:17
+	android:name
+		ADDED from AndroidManifest.xml:178:25
+action#android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:179:17
+	android:name
+		ADDED from AndroidManifest.xml:179:25
+receiver#com.heapstack.groupbowl.Receiver
+ADDED from AndroidManifest.xml:182:9
+	android:exported
+		ADDED from AndroidManifest.xml:184:13
+	android:name
+		ADDED from AndroidManifest.xml:183:13
+intent-filter#com.parse.push.intent.DELETE+com.parse.push.intent.OPEN+com.parse.push.intent.RECEIVE
+ADDED from AndroidManifest.xml:185:13
+action#com.parse.push.intent.RECEIVE
+ADDED from AndroidManifest.xml:186:17
+	android:name
+		ADDED from AndroidManifest.xml:186:25
+action#com.parse.push.intent.DELETE
+ADDED from AndroidManifest.xml:187:17
+	android:name
+		ADDED from AndroidManifest.xml:187:25
+action#com.parse.push.intent.OPEN
+ADDED from AndroidManifest.xml:188:17
+	android:name
+		ADDED from AndroidManifest.xml:188:25
+receiver#com.parse.GcmBroadcastReceiver
+ADDED from AndroidManifest.xml:191:9
+	android:permission
+		ADDED from AndroidManifest.xml:192:13
+	android:name
+		ADDED from AndroidManifest.xml:191:19
+intent-filter#com.google.android.c2dm.intent.RECEIVE+com.google.android.c2dm.intent.REGISTRATION+com.heapstack.groupbowl
+ADDED from AndroidManifest.xml:193:13
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from AndroidManifest.xml:194:17
+	android:name
+		ADDED from AndroidManifest.xml:194:25
+action#com.google.android.c2dm.intent.REGISTRATION
+ADDED from AndroidManifest.xml:195:17
+	android:name
+		ADDED from AndroidManifest.xml:195:25
+category#com.heapstack.groupbowl
+ADDED from AndroidManifest.xml:200:17
+	android:name
+		ADDED from AndroidManifest.xml:200:27
+uses-sdk
+INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
+	android:targetSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0

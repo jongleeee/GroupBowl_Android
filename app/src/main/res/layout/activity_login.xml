@@ -54,23 +54,10 @@
         android:background="@android:color/white"/>
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="club management"
-        android:id="@+id/subtitle"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_above="@+id/login_emailField"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="69dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don&apos;t have an account? Sign up"
+        android:text="Don&apos;t have an account? Sign up!"
         android:id="@+id/signupButton"
         android:layout_alignTop="@+id/loginButton"
         android:layout_centerHorizontal="true"
@@ -81,8 +68,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_above="@+id/subtitle"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/groupbowl_logo_white_big"/>
+        android:background="@drawable/groupbowl_logo_white_big"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/login_passwordfield" />
 
 </RelativeLayout>
